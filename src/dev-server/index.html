@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <title>Fake API</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- версия для разработки, отображает полезные предупреждения в консоли -->
+    <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div :class="isConnected ? 'status connected': 'status disconnected'">
+        {{ isConnected ? 'connected' : 'disconnected' }}
+    </div>
+    <div class="area">
+        <label>open</label>
+        <div class="area-content">
+            <button :class="{'btn btn-success': true, 'btn-selected': openSuccess}" @click="switchOpenStatus(1)">success</button>
+            <button :class="{'btn btn-fail': true, 'btn-selected': !openSuccess}" @click="switchOpenStatus(0)">fail</button>
+        </div>
+    </div>
+    <div class="area">
+        <label>init_game</label>
+        <div class="area-content">
+            <button :class="{'btn btn-success': true, 'btn-selected': initSuccess}" @click="switchInitStatus(1)">success</button>
+            <button :class="{'btn btn-fail': true, 'btn-selected': !initSuccess}" @click="switchInitStatus(0)">fail</button>
+        </div>
+    </div>
+    <div class="area">
+        <label>play_round</label>
+        <div class="area-content">
+            <button :class="{'btn': true, 'btn-selected': playRoundType === 'random'}" @click="switchPlayRoundType('random')">random</button>
+            <button :class="{'btn': true, 'btn-selected': playRoundType === 'custom'}" @click="switchPlayRoundType('custom')">custom</button>
+            <button :class="{'btn btn-fail': true, 'btn-selected': playRoundType === 'fail'}" @click="switchPlayRoundType('fail')">fail</button>
+
+            <table v-if="playRoundType === 'custom'">
+                <tr v-for="row in rows">
+                    <td v-for="col in cols" :class="getTdClass(row, col)">
+                        <slot-selector v-model="matrix[row][col]"></slot-selector>
+                    </td>
+                </tr>
+            </table>
+
+            <div v-if="!!customResult" class="custom-results">
+                <div>Status: {{ customResult.status_label }} </div>
+                <div>Won: {{ customResult.won_amount ? customResult.won_amount + 'x' : 0 }} </div>
+                <a
+                        href="#"
+                        v-for="line in customResult.adapter_play_data.won_lines"
+                        @mouseover="highlight(line.coordinate)"
+                        @mouseout="highlight([])"
+                >
+                    Line [{{ line.line_index }}]: {{ line.won_amount }}x
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="area">
+        <label>gambling</label>
+        <div class="area-content">
+            <button :class="{'btn': true, 'btn-selected': gamblingType === 'random'}" @click="switchGamblingType('random')">random</button>
+            <button :class="{'btn': true, 'btn-selected': gamblingType === 'custom'}" @click="switchGamblingType('custom')">custom</button>
+            <div class="gamble-selector">
+                <gamble-selector v-if="gamblingType === 'custom'" v-model="gamblingValue"></gamble-selector>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Game</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      background: #2a1c0d;
+    }
+    #game-wrapper {
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    #bg {
+      content: "";
+      background: url(assets/common/img/other/body_bg.jpg) no-repeat 50% 50%;
+      background-size: cover;
+      opacity: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    #bg.mobile {
+      content: "";
+      background: url(assets/mobile/img/other/body_bg.jpg) no-repeat 50% 50%;
+      background-size: cover;
+      opacity: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    #bg.main-game-bg {
+      background: url(assets/common/img/other/body_bg_slot.jpg) no-repeat 50% 50%;
+      background-size: cover;
+    }
+    #bg.main-game-bg.mobile {
+      background: url(assets/mobile/img/other/body_bg.jpg) no-repeat 50% 50%;
+    }
+    #switch-test-btn{
+      position: absolute;
+      display: none;
+      background-color: #2a1c0d;
+      border-color: #573a1a;
+      border-width: 1px;
+      border-style: solid;
+      color: #b97c37;
+      padding: 5px 10px;
+      top: 30px;
+      left: 30px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .test-buttons-panel {
+      position: absolute;
+      z-index: 1000;
+      top: 70px;
+      left: 30px;
+    }
+    #test-panel {
+      display: none;
+    }
+    #landscape_area {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      background: #000;
+    }
+    #landscape_area.show {
+      display: block;
+    }
+    .landscape_area_icon {
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+      width: 160px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 110px;
+    }
+    .landscape_area_icon {
+      background: url("assets/common/img/other/phone.png");
+      background-size: cover;
+      animation-name: landscape_area_icon;
+      animation-duration: 2s;
+      animation-direction: normal;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+    }
+    @keyframes landscape_area_icon {
+
+      0% {
+        -moz-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+
+      }
+      75% {
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+    }
+    .blink-btn{
+      cursor: pointer;
+      background-color: #2a1c0d;
+      border-color: #573a1a;
+      border-width: 1px;
+      border-style: solid;
+      color: #b97c37;
+      padding: 5px 10px;
+    }
+    #iphone-fixed-bg {
+      width: 100%;
+      height: 1500px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: -500px;
+      left: 0;
+      display: none;
+    }
+    #iphone-fixed-bg > div {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background-image: url("data:image/png;base64,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");
+      background-position: 50% 50%;
+      background-size: 96px 68px;
+      background-repeat: no-repeat;
+    }
+    #iphone-fixed-bg.show { display: block; }
+  </style>
+</head>
+
+<body>
+<div id="switch-test-btn">Test effects</div>
+<div id="test-panel" class="test-buttons-panel">
+  <div class="blink-btn" data-type="big">
+    <span>Big win effect</span>
+  </div>
+  <div class="blink-btn" data-type="super">
+    <span>Super win effect</span>
+  </div>
+  <div class="blink-btn" data-type="mega">
+    <span>Mega win effect</span>
+  </div>
+  <div class="blink-btn" data-type="winSpin">
+    <span>Play WinSpin</span>
+  </div>
+</div>
+<div id="landscape_area">
+  <div class="landscape_area_icon ">
+  </div>
+</div>
+<div id="iphone-fixed-bg">
+  <div></div>
+</div>
+<div id="bg"></div>
+<div id="game-wrapper"></div>
+</body>
+<script src="build/vendor.min.js"></script>
+<script src="build/game.min.js?r2021021201"></script>
+<!--<script src="build/game.js"></script>-->
+<script>
+  const isIphone = PIXI.utils.isMobile.apple.device;
+  const devMode = true;
+  var needIphoneFix = false;
+  const token = window.location.hash.replace('#token=', '');
+  const gameApi = new GameApi('', 'modern_fruits', token, devMode);
+  if (!token) {
+    pextid = gameApi.generatePextid('modern_fruits_7');
+  }
+  const game = new Game(document.getElementById("game-wrapper"), gameApi, devMode);
+  game.onChangeLayout = (isHorizontal) => {
+    if (!isHorizontal) {
+      document.getElementById("landscape_area").classList.add("show");
+    } else {
+      document.getElementById("landscape_area").classList.remove("show");
+      if (isIphone && (window.innerHeight !== screen.width || window.innerHeight !== screen.heighgit)) {
+        needIphoneFix = true;
+        document.getElementById("iphone-fixed-bg").classList.add("show");
+      }
+    }
+  };
+
+  const onScroll = function () {
+    if (needIphoneFix && window.scrollY > 50) {
+      document.getElementById("iphone-fixed-bg").classList.remove("show");
+      window.scrollTo(0, 0);
+    }
+  }
+
+  if (isIphone) {
+    document.addEventListener('scroll', onScroll);
+  }
+
+  const testEffectsButton = document.getElementById('switch-test-btn');
+
+  document.addEventListener('scene_switched', function (e) {
+    if (e.detail.scene_name === 'SlotsScene' && e.detail.debug) {
+      testEffectsButton.style.display = 'block';
+    } else {
+      testEffectsButton.style.display = 'none';
+      document.getElementById('test-panel').style.display = 'none';
+    }
+  }, false);
+
+  document.addEventListener('slots_scene_ready', function () {
+    document.getElementById('bg').classList.add("main-game-bg");
+  }, false);
+
+  document.addEventListener('free_spins_scene_ready', function () {
+    document.getElementById('bg').classList.add("main-game-bg");
+  }, false);
+
+  testEffectsButton.onclick = function (el) {
+    const panel = document.getElementById('test-panel');
+    if (panel.style.display === 'none' || panel.style.display === '') {
+      panel.style.display = 'block';
+    } else {
+      panel.style.display = 'none';
+    }
+
+  };
+
+  if (PIXI.utils.isMobile.any) {
+    document.getElementById('bg').classList.add("mobile");
+    document.body.addEventListener('touchend', function () {
+      RG.Utils.FullScreen.fullScreen()
+    }, {once: true});
+  }
+
+  var testPlayFunc = function () {
+    game.testEffect(this.dataset.type)
+  };
+
+  var btns = document.getElementById('test-panel').querySelectorAll('.blink-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].onclick = testPlayFunc
+  }
+
+  WebFont.load({
+    google: {
+      families: ['Roboto']
+    },
+    active: () => {
+      game.start();
+    }
+  });
+
+</script>
+</html>

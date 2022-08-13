@@ -1,0 +1,294 @@
+{
+  "ok": 1,
+  "balance": "10000",
+  "currency": "EUR",
+  "currency_symbol": "\u20ac",
+  "language": "en",
+  "round_id": null,
+  "won_amount": 0,
+  "status": null,
+  "status_label": {
+    "2": "Lost",
+    "1": "Won",
+    "3": "Rollback",
+    "0": "Created",
+    "4": "Continue gamble",
+    "5": "Start gamble",
+    "6": "Decline gamble"
+  },
+  "stake_data": {
+    "steps": [
+      "0.25",
+      "0.3",
+      "0.4",
+      "0.5",
+      "0.75",
+      "1",
+      "1.5",
+      "2",
+      "2.5",
+      "3.75",
+      "5",
+      "7.5",
+      "10",
+      "15",
+      "25",
+      "35",
+      "50",
+      "75",
+      "100"
+    ],
+    "default_stake": "1.5"
+  },
+  "special_win_stage": {
+    "200": "mega",
+    "50": "super",
+    "15": "big"
+  },
+  "auto_play_data": {
+    "f_play_gamble": {
+        "value": 1
+      },
+    "loss_limits": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "value": 0
+    },
+    "single_win_limits": {
+      "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "value": 0
+    },
+    "spins": {
+      "steps": [
+        5,
+        10,
+        25,
+        50,
+        100
+      ],
+      "value": 25
+    }
+  },
+  "active_free_spin_data": {
+      "id":0,
+      "name": "",
+      "rest_spins": 0,
+      "won_amount": 0,
+      "spins": 0,
+      "bet": 0
+  },  
+  "help": {
+    "win_info": {
+      "symbols_map": [
+        {
+          "possibility": "",
+          "combinations": {
+            "2": 1,
+            "3": 4,
+            "4": 10,
+            "5": 40
+          },
+          "win_positions": [
+            "left"
+          ],
+          "final_possibility": 14.64,
+          "range": [
+            0.8535617900000001,
+            1.0000000000000002
+          ]
+        },
+        {
+          "possibility": "17.431231",
+          "combinations": {
+            "3": 4,
+            "4": 10,
+            "5": 40
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0,
+            0.17431231
+          ],
+          "final_possibility": "17.431231"
+        },
+        {
+          "possibility": "17.431231",
+          "combinations": {
+            "3": 4,
+            "4": 10,
+            "5": 40
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0.17431231,
+            0.34862462
+          ],
+          "final_possibility": "17.431231"
+        },
+        {
+          "possibility": "17.431231",
+          "combinations": {
+            "3": 4,
+            "4": 10,
+            "5": 40
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0.34862462,
+            0.52293693
+          ],
+          "final_possibility": "17.431231"
+        },
+        {
+          "possibility": "11.48881",
+          "combinations": {
+            "3": 10,
+            "4": 40,
+            "5": 100
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0.52293693,
+            0.63782503
+          ],
+          "final_possibility": "11.48881"
+        },
+        {
+          "possibility": "11.48881",
+          "combinations": {
+            "3": 10,
+            "4": 40,
+            "5": 100
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0.63782503,
+            0.7527131300000001
+          ],
+          "final_possibility": "11.48881"
+        },
+        {
+          "possibility": "6.972179",
+          "combinations": {
+            "3": 20,
+            "4": 200,
+            "5": 1000
+          },
+          "win_positions": [
+            "left"
+          ],
+          "range": [
+            0.7527131300000001,
+            0.8224349200000001
+          ],
+          "final_possibility": "6.972179"
+        },
+        {
+          "possibility": "3.112687",
+          "combinations": {
+            "3": 2,
+            "4": 10,
+            "5": 50
+          },
+          "win_positions": [
+            "any"
+          ],
+          "range": [
+            0.8224349200000001,
+            0.8535617900000001
+          ],
+          "final_possibility": "3.112687"
+        }
+      ]
+    }
+  },
+  "adapter_play_data": {
+    "symbols_position_indexes": [
+      [
+        1,
+        0,
+        2,
+        2,
+        1
+      ],
+      [
+        4,
+        4,
+        2,
+        7,
+        0
+      ],
+      [
+        2,
+        5,
+        3,
+        3,
+        3
+      ]
+    ],
+    "max_won_line": null,
+    "won_lines": []
+  },
+  "adapter_gamble_data": false,
+  "gamble_val_history": [],
+  "translations": {
+    "NOTICE": "Notice",
+    "GAMBLE_AMOUNT": "Gamble amount",
+    "RED_BLACK_GAMBLE_TO_AMOUNT": "Red\/Black gamble to amount",
+    "SUIT_GAMBLE_TO_AMOUNT": "Suit gamble to amount",
+    "STAR_WINS_INFO": "Star wins are paid independently of bet lines selected",
+    "LINE_INFO_TEXT": "Bet lines pay if in succession from leftmost to rightmost.\nOnly the highest win per pay line is paid.\nStar wins are paid independently of bet lines selected.\nActive lines are fixed: 5 lines.",
+    "RTP_TEXT": "Malfunction voids all pays and plays.\nRTP: 95.68%\nVER: 1.0.0",
+    "GAMBLE_WITH_WINNINGS_HELP": "After successfully winning a line, you have the option to gamble with your winnings. By clicking on this button, the gamble screen is opened.",
+    "WINNINGS_CASH_OUT_HELP": "After successfully winning on the gamble screen, you have the option to cash out your winnings. By clicking on this button, the gamble screen will be closed and the winnings will be added to your balance on the slot screen.",
+    "LOSS_LIMIT": "Loss limit",
+    "SINGLE_WIN_LIMIT": "Single Win limit",
+    "NUMBER_OF_SPINS": "Spins amount",
+    "TAP_TO_START": "Tap to start",
+    "BALANCE": "BALANCE",
+    "BET_SIZE_LABEL": "STAKE"
+  }
+}

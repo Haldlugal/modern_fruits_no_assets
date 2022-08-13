@@ -1,0 +1,35 @@
+{
+  "name": "book_of_at_freespins",
+  "version": "1.0.0",
+  "description": "Casino Game [Book Of Ancient Treasures with freespins]",
+  "scripts": {
+    "build:vendor": "uglifyjs --source-map -o ../build/vendor.min.js vendor/axios/axios.min.js node_modules/pixi.js-legacy/dist/pixi-legacy.js node_modules/pixi-sound/dist/pixi-sound.js node_modules/pixi-particles/dist/pixi-particles.js node_modules/pixi-text-input/PIXI.TextInput.js node_modules/webfontloader/webfontloader.js",
+    "build:app": "tsc",
+    "build:assets": "node assets-builer.js",
+    "build": "npm run build:assets && npm run build:app && npm run build:vendor",
+    "prod": "npm run build && uglifyjs -m --source-map -o ../build/game.min.js ../build/game.js",
+    "watch": "tsc -w",
+    "start": "node dev-server/server.js",
+    "clear": "node asset_cleaner.js && yarn build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "1.19.0",
+    "browserify": "16.5.1",
+    "deamdify": "0.3.0",
+    "express": "4.15.2",
+    "pixi-particles": "4.2.0",
+    "pixi-sound": "3.0.4",
+    "pixi.js": "5.2.1",
+    "socket.io": "2.3.0",
+    "typescript": "3.8.3",
+    "uglify-es": "3.3.9",
+    "webfontloader": "1.6.28"
+  },
+  "dependencies": {
+    "@pixi/canvas-renderer": "^5.3.3",
+    "pixi-text-input": "1.0.5",
+    "pixi.js-legacy": "^5.3.3"
+  }
+}
